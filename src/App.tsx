@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
-import * as C from './App.styles';
-import * as Photos from './services/photos';
-
-import { Photo } from './types/photo'
+import { useState, useEffect } from "react";
+import * as C from "./App.styles";
+import * as Photos from "./services/photos";
+import { Photo } from "./types/photo";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -15,18 +14,29 @@ function App() {
       setLoading(false);
     };
     getPhotos();
-  },[]);
+  }, []);
+
   return (
     <C.Container>
       <C.Aria>
         <C.Header>Galeria de fotos</C.Header>
-        <C.ScreenWarning>
-          <div className='emiji'></div>
-          <div>loading ...</div>
-        </C.ScreenWarning>
+        {loading &&
+          <C.ScreenWarning>
+            <div className="emoji">🤬</div>
+            <div>loading ...</div>
+          </C.ScreenWarning>
+        }
+
+        {!loading && photos.length > 0 &&
+        <C.PhotoList>
+            {photos.map((item, index) => (
+              <div>{item.name}</div>
+            ))}
+        </C.PhotoList>
+        }
       </C.Aria>
     </C.Container>
-  )
+  );
 }
 
-export default App
+export default App;
