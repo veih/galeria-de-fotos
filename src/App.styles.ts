@@ -33,3 +33,19 @@ export const PhotoList = styled.div `
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 `;
+
+export const UpLoadForm = styled.form `
+    background-color: #3d3f43;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 30px;
+
+    input[type=submit] {
+        background-color: #756df4;
+        border: 0;
+        color: #fff;
+        padding: 8px 16px;
+        font-size: 13px;
+        border-radius: 10px;
+    }
+`;

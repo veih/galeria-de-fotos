@@ -17,10 +17,20 @@ function App() {
     getPhotos();
   }, []);
 
+  const handleFormSubmit = () => {
+
+  }
+
   return (
     <C.Container>
       <C.Aria>
         <C.Header>Galeria de fotos</C.Header>
+
+        <C.UpLoadForm method='POST' onSubmit={handleFormSubmit}>
+          <input type='file' name='image'/>
+          <input type='submit' value='Enviar' />
+        </C.UpLoadForm>
+
         {loading && (
           <C.ScreenWarning>
             <div className="emoji">🤬</div>
