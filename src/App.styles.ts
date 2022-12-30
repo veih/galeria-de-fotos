@@ -47,5 +47,11 @@ export const UpLoadForm = styled.form `
         padding: 8px 16px;
         font-size: 13px;
         border-radius: 10px;
+        margin: 0 20px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.9;
+        }
     }
 `;

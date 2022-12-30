@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import * as C from "./App.styles";
 import * as Photos from "./services/photos";
 import { Photo } from "./types/photo";
 import { PhotoItem } from "./components/PhotoItem";
 
 function App() {
+  const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [photos, setPhotos] = useState<Photo[]>([]);
 
@@ -17,8 +18,16 @@ function App() {
     getPhotos();
   }, []);
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
+    const formData = new FormData(e.currentTarget);
+    const file = formData.get("image") as File;
+
+    if (file && file.size > 0)  {
+      setUploading(true);
+      //envio do arquivo
+      setLoading(false);    }
   }
 
   return (
