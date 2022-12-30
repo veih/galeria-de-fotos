@@ -27,7 +27,7 @@ export const insert = async (file: File) => {
     if (['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
         let randomName = createId();
 
-        let newFile = ref(storage, `${randomName}`);
+        let newFile = ref(storage, `images/${randomName}`);
 
         let upload = await uploadBytes(newFile, file);
         let photoUrl = await getDownloadURL(upload.ref);

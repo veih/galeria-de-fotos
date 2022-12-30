@@ -8,6 +8,7 @@ export const Container = styled.div `
 
     img {
         max-width: 100%;
+        max-height: 275px;
         display: block;
         margin-bottom: 10px;
         border-radius: 10px;

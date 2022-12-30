@@ -24,20 +24,30 @@ function App() {
     const formData = new FormData(e.currentTarget);
     const file = formData.get("image") as File;
 
-    if (file && file.size > 0)  {
+    if (file && file.size > 0) {
       setUploading(true);
-      //envio do arquivo
-      setLoading(false);    }
-  }
+      let result = await Photos.insert(file);
+      setUploading(false);
+
+      if (result instanceof Error) {
+        alert(`${result.message} - ${result.name}`);
+      } else {
+        let newPhotoList = [...photos];
+        newPhotoList.push(result);
+        setPhotos(newPhotoList);
+      }
+    }
+  };
 
   return (
     <C.Container>
       <C.Aria>
         <C.Header>Galeria de fotos</C.Header>
 
-        <C.UpLoadForm method='POST' onSubmit={handleFormSubmit}>
-          <input type='file' name='image'/>
-          <input type='submit' value='Enviar' />
+        <C.UpLoadForm method="POST" onSubmit={handleFormSubmit}>
+          <input type="file" name="image" />
+          <input type="submit" value="Enviar" />
+          {uploading && "Enviando..."}
         </C.UpLoadForm>
 
         {loading && (
@@ -48,11 +58,13 @@ function App() {
         )}
 
         {!loading && photos.length > 0 && (
-          <C.PhotoList>
-            {photos.map((item, index) => (
-              <PhotoItem key={index} url={item.url} name={item.name}/>
-            ))}
-          </C.PhotoList>
+            <C.PhotoList>
+              {photos.map((item, index) => (
+                <div>
+                <button>X</button><PhotoItem key={index} url={item.url} name={item.name} />
+                </div>
+              ))}
+            </C.PhotoList>
         )}
 
         {!loading && photos.length === 0 && (
