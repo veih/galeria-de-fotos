@@ -4,6 +4,8 @@ import * as Photos from "./services/photos";
 import { Photo } from "./types/photo";
 import { PhotoItem } from "./components/PhotoItem";
 
+import { FaBookDead } from "react-icons/fa";
+
 function App() {
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -39,6 +41,10 @@ function App() {
     }
   };
 
+  const handleDelete = async (e: React.MouseEventHandler<HTMLButtonElement> | any) => {
+      
+     };
+
   return (
     <C.Container>
       <C.Aria>
@@ -58,13 +64,14 @@ function App() {
         )}
 
         {!loading && photos.length > 0 && (
-            <C.PhotoList>
-              {photos.map((item, index) => (
-                <div>
-                <button>X</button><PhotoItem key={index} url={item.url} name={item.name} />
-                </div>
-              ))}
-            </C.PhotoList>
+          <C.PhotoList >
+            {photos.map((item, index) => (
+              <div key={index}>
+                <button onClick={handleDelete} value={item.name}><FaBookDead/></button>
+                <PhotoItem key={index} url={item.url} name={item.name} />
+              </div>
+            ))}
+          </C.PhotoList>
         )}
 
         {!loading && photos.length === 0 && (

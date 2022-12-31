@@ -32,6 +32,17 @@ export const PhotoList = styled.div `
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+
+    button {
+        font-size: 20px;
+        position: absolute;
+        margin-left: 22%;
+        cursor: pointer;
+
+        &:hover {
+            color: #3f4d00;
+        }
+    }
 `;
 
 export const UpLoadForm = styled.form `
