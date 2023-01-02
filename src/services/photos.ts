@@ -1,6 +1,12 @@
 import { Photo } from '../types/photo';
 import { storage } from '../libs/firebase';
-import { ref, listAll, getDownloadURL, uploadBytes, deleteObject} from 'firebase/storage';
+import {
+    ref,
+    listAll,
+    getDownloadURL,
+    uploadBytes,
+    deleteObject,
+    } from 'firebase/storage';
 
 import { v4 as createId } from 'uuid'
 
@@ -15,7 +21,7 @@ export const getAll = async () => {
 
         list.push({
             name: photoList.items[i].name,
-            url: photoUrl
+            url: photoUrl,
         });
     };
 
@@ -39,4 +45,10 @@ export const insert = async (file: File) => {
     } else {
         new Error(`File type is not supported`)
     }
+};
+
+export const deletePhoto = async () => {
+    const photoDel = ref(storage, 'photos');
+
+    await deleteObject(photoDel);
 };

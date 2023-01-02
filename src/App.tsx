@@ -41,8 +41,10 @@ function App() {
     }
   };
 
-  const handleDelete = async (e: React.MouseEventHandler<HTMLButtonElement> | any) => {
+  const handleDelete = (e: React.MouseEventHandler<HTMLButtonElement> | any) => {
+      const target = e.currentTarget.parentElement.children[1].innerText;
       
+      console.log(target);
      };
 
   return (
@@ -64,11 +66,13 @@ function App() {
         )}
 
         {!loading && photos.length > 0 && (
-          <C.PhotoList >
+          <C.PhotoList>
             {photos.map((item, index) => (
-              <div key={index}>
-                <button onClick={handleDelete} value={item.name}><FaBookDead/></button>
-                <PhotoItem key={index} url={item.url} name={item.name} />
+              <div key={index} className="cardPhoto">
+                <button onClick={handleDelete} >
+                  <FaBookDead />
+                </button>
+                <PhotoItem key={index} url={item.url} name={item.name}  />
               </div>
             ))}
           </C.PhotoList>
