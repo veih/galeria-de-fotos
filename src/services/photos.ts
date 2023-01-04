@@ -9,6 +9,7 @@ import {
     } from 'firebase/storage';
 
 import { v4 as createId } from 'uuid'
+import { PhotoList } from '../App.styles';
 
 export const getAll = async () => {
     let list: Photo[] = [];
@@ -48,7 +49,13 @@ export const insert = async (file: File) => {
 };
 
 export const deletePhoto = async () => {
-    const photoDel = ref(storage, 'photos');
+    let photoDel = ref(storage, 'images/name');
 
-    await deleteObject(photoDel);
+    await deleteObject(photoDel)
+        .then(() => {
+          //console.log(target)
+        })
+        .catch((error) => {});
+      console.log();
+    //console.log(photoDel);
 };
