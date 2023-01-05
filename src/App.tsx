@@ -3,7 +3,7 @@ import * as C from "./App.styles";
 import * as Photos from "./services/photos";
 import { Photo } from "./types/photo";
 import { PhotoItem } from "./components/PhotoItem";
-import { deleteObject } from "firebase/storage";
+import { deletePhoto } from "./services/photos";
 
 import { FaBookDead } from "react-icons/fa";
 
@@ -43,8 +43,10 @@ function App() {
   };
 
   const handleDelete = async (e: React.MouseEventHandler<HTMLButtonElement> | any) => {
-      let target = (e.currentTarget);
-      target.deletePhoto
+      let target = await (e.currentTarget.parentElement.children[1]);
+      
+console.log(target);
+      
      };
 
   return (
